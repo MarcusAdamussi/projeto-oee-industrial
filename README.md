@@ -45,7 +45,7 @@ FROM tb_producao pr
 LEFT JOIN tb_paradas p ON pr.id_producao = p.id_producao
 GROUP BY pr.id_producao;
 
-Processamento e Vetorização (Pandas)
+### Processamento e Vetorização (Pandas)
 Com os dados extraídos, foram calculados os três pilares do OEE e a métrica final:
 
 # Cálculos dos Pilares do OEE
