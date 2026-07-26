@@ -27,6 +27,8 @@ Esse fluxo demonstra capacidade autodidata para acelerar o aprendizado, estrutur
 
 > **Pergunta de Negócio:** *Qual está sendo o OEE médio da nossa fábrica nesses dias? Como ele se divide entre os pilares de Disponibilidade, Performance e Qualidade para cada máquina e turno?*
 
+![Gráfico de Pareto de Paradas](pareto_paradas.png)
+
 #### Lógica de Extração (SQL)
 Para consolidar os tempos de parada por registro de produção, foi executado um `LEFT JOIN` com agrupamento por ordem de produção:
 
