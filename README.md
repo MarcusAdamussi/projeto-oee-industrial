@@ -49,13 +49,15 @@ GROUP BY pr.id_producao;
 Com os dados extraídos, foram calculados os três pilares do OEE e a métrica final:
 
 # Cálculos dos Pilares do OEE
+```
 df_oee['disponibilidade'] = (df_oee['tempo_planejado_min'] - df_oee['tempo_parada_total']) / df_oee['tempo_planejado_min']
 df_oee['performance'] = (df_oee['qtd_boas'] + df_oee['qtd_refugo']) / df_oee['qtd_planejada']
 df_oee['qualidade'] = df_oee['qtd_boas'] / (df_oee['qtd_boas'] + df_oee['qtd_refugo'])
-
+```
 # OEE Final
+```
 df_oee['oee'] = df_oee['disponibilidade'] * df_oee['performance'] * df_oee['qualidade']
-
+```
 - Principais Insights de OEE
 Pior Desempenho: A máquina INJ-01 no Turno A (02/07) registrou o menor OEE (32,50%), criticamente afetada por 220 minutos de paradas acumuladas.
 
@@ -66,17 +68,19 @@ Pergunta de Negócio: Quanto dinheiro (R$) estamos perdendo por conta do tempo o
 
 Agregação e Cálculo Financeiro
 A consulta agrupa o tempo total parado por motivo e converte a taxa horária de custo da máquina em valores monetários reais:
-
+```
 SELECT 
     motivo_parada,
     SUM(tempo_parada_min) AS tempo_total_min,
     custo_hora_maquina
 FROM tb_paradas
 GROUP BY motivo_parada;
-
+```
 # Cálculo da perda financeira por conversão de horas
+```
 df_custo['prejuizo_reais'] = (df_custo['tempo_total_min'] / 60) * df_custo['custo_hora_maquina']
 prejuizo_total = df_custo['prejuizo_reais'].sum()
+```
 
 3. Análise de Pareto (Regra 80/20) & Identificação do Gargalo
 Pergunta de Negócio: Com base no gráfico de custos por motivo de parada, qual ação você recomenda para a equipe de Engenharia de Processos / Manutenção?
