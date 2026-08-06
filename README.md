@@ -27,8 +27,6 @@ Esse fluxo demonstra capacidade autodidata para acelerar o aprendizado, estrutur
 
 > **Pergunta de Negócio:** *Qual está sendo o OEE médio da nossa fábrica nesses dias? Como ele se divide entre os pilares de Disponibilidade, Performance e Qualidade para cada máquina e turno?*
 
-![Gráfico de Pareto de Paradas](pareto_paradas.png)
-
 #### Lógica de Extração (SQL)
 Para consolidar os tempos de parada por registro de produção, foi executado um `LEFT JOIN` com agrupamento por ordem de produção:
 
@@ -83,6 +81,8 @@ GROUP BY motivo_parada;
 df_custo['prejuizo_reais'] = (df_custo['tempo_total_min'] / 60) * df_custo['custo_hora_maquina']
 prejuizo_total = df_custo['prejuizo_reais'].sum()
 ```
+
+![Gráfico de Pareto de Paradas](pareto_paradas.png)
 
 3. Análise de Pareto (Regra 80/20) & Identificação do Gargalo
 Pergunta de Negócio: Com base no gráfico de custos por motivo de parada, qual ação você recomenda para a equipe de Engenharia de Processos / Manutenção?
